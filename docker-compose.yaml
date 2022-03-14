@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    volumes:
+      - ./server:/usr/src/app/
+      - /server/src/app/node_modules
+    stdin_open: true
+    tty: true
+
+  db:
+    container_name: db
+    image: mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: AppDB
+      MYSQL_ROOT_PASSWORD: local
+    ports:
+      - 3306:3306
+    volumes:
+      - db-config:/etc/mysql
+      - db-data:/var/lib/mysql
+      - ./db/backup/files/:/data_backup/data
+      - ./docker/setup.sql:/docker-entrypoint-initdb.d/setup.sql
+
+volumes:
+  db:
+    driver: local
+  db-config:
+  db-data:
