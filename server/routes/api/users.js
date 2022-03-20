@@ -34,7 +34,7 @@ router.post(
       const findUserQuery = `SELECT * FROM users WHERE email = ?;`;
       const isUser = await query(findUserQuery, [email]);
       if (isUser.length > 0) {
-        return res.status(400).json({ msg: "User exists line 38" });
+        return res.status(400).json({ msg: "User exists" });
       }
 
       // If user doesn't exist, add user
