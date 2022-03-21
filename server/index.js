@@ -1,12 +1,14 @@
 const express = require("express");
-const cors = require('cors');
+const cors = require("cors");
 
 require("dotenv").config();
 const app = express();
 
-app.use(cors({
-    origin: '*'
-}));
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 const PORT = process.env.PORT;
 app.use(express.json({ extended: false }));
 app.get("/", (req, res) => res.send("API running"));

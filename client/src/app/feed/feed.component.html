@@ -1,0 +1,19 @@
+<div id="app" class="h-screen flex">
+  <!-- Fixed sidebar -->
+  <div class="bg-gray-600 w-40 sm:w-64">
+    <h1 class="p-4 text-white font-semibold text-xl">Fixed Sidebar</h1>
+  </div>
+  <!-- Scroll wrapper -->
+  <div class="flex-1 flex bg-gray-100 overflow-hidden">
+    <!-- Scrollable container -->
+    <div class="px-6 py-4 flex-1 overflow-y-scroll">
+      <!-- Your content -->
+      <div
+        class="p-8 shadow text-center rounded-lg my-10 bg-white"
+        v-for="i in 50"
+      >
+        POST FEED
+      </div>
+    </div>
+  </div>
+</div>

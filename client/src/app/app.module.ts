@@ -7,27 +7,28 @@ import { LoginComponent } from './login/login.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { counterReducer } from './reducers/counter.reducer';
-import {authReducer} from './reducers/auth.reducer';
+import { authReducer } from './reducers/auth.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment.prod';
-import { HttpClientModule } from "@angular/common/http";
-import {AuthService} from './services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './reducers/services/auth.service';
+import { FormsModule } from '@angular/forms';
+import { FeedComponent } from './feed/feed.component';
+import { AuthGuardService } from './reducers/services/AuthGuard.service';
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent
-  ],
+  declarations: [AppComponent, LoginComponent, FeedComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    StoreModule.forRoot({count: counterReducer,user:authReducer}),
+    FormsModule,
+    StoreModule.forRoot({ count: counterReducer, user: authReducer }),
     StoreDevtoolsModule.instrument({
       name: 'NgRx Demo App',
-      logOnly: environment.production
-    })
+      logOnly: environment.production,
+    }),
   ],
-  providers: [AuthService],
-  bootstrap: [AppComponent]
+  providers: [AuthService, AuthGuardService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
