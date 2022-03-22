@@ -32,4 +32,19 @@ export class FeedService {
       }
     );
   }
+  deletePost(token: any, postId: any): Observable<any> {
+    console.log('In service token', token);
+    console.log('In service Post', postId);
+
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'x-auth-token': token,
+      }),
+      body: {
+        postId: postId,
+      },
+    };
+    return this.http.delete(this.baseURL + 'api/posts/', options);
+  }
 }

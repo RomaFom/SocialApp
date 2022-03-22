@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { FeedService } from '../reducers/services/feed.service';
+
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -24,7 +25,7 @@ export class FeedComponent implements OnInit {
     private feed: FeedService
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     this.subscription = this.data.currentMessage.subscribe(
       (message) => (this.message = message)
     );
@@ -40,5 +41,18 @@ export class FeedComponent implements OnInit {
     });
     console.log(this.postList);
     console.log('User', this.user);
+  }
+  deletePost(data: any) {
+    console.log('Post data', data.id);
+    console.log('Token', this.token);
+    this.feed.deletePost(this.token, data.id).subscribe((res) => {
+      console.log(res);
+      if (res.msg == 'Post deleted') {
+        let currentUrl = this.router.url;
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate([currentUrl]);
+      }
+    });
   }
 }

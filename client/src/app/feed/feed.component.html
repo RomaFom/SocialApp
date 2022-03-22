@@ -19,7 +19,14 @@
             class="p-8 shadow text-center rounded-lg my-10 bg-white"
             v-for="i in 50"
           >
-            {{ post.data }}
+            <div class="flex justify-end" *ngIf="user.id == post.user_id">
+              <button (click)="deletePost(post)">
+                <i class="flex bi bi-x-circle fs-4 mb-4"></i>
+              </button>
+            </div>
+            <div>
+              {{ post.data }}
+            </div>
           </div>
         </div>
       </div>
