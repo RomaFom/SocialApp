@@ -1,18 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { getUser } from '../reducers/auth.selectors';
-import { State } from '../reducers/auth.reducer';
+import { DataService } from '../services/data.service';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { FeedService } from '../reducers/services/feed.service';
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.css'],
 })
 export class FeedComponent implements OnInit {
-  // user$: Observable<any>;
-  constructor(private store: Store<State>) {}
+  message: string = '';
+  subscription!: Subscription;
+  user: any;
+  postList: any;
+  testArr = [1, 2, 3, 4, 5];
+  baseURL: string = 'http://localhost:5000/';
+  token: any;
+  constructor(
+    private data: DataService,
+    private router: Router,
+    private http: HttpClient,
+    private feed: FeedService
+  ) {}
 
-  ngOnInit(): void {
-    console.log(this.store.pipe(select(getUser)));
+  async ngOnInit() {
+    this.subscription = this.data.currentMessage.subscribe(
+      (message) => (this.message = message)
+    );
+    this.subscription = this.data.currentUser.subscribe(
+      (user) => (this.user = user)
+    );
+    if (!this.user) {
+      this.router.navigate(['/']);
+    }
+    this.token = localStorage.getItem('token');
+    this.feed.getPosts(this.token).subscribe((posts) => {
+      this.postList = posts.Posts;
+    });
+    console.log(this.postList);
+    console.log('User', this.user);
   }
 }

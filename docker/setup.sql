@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `posts`;
 CREATE TABLE `posts` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
-  `data` VARCHAR(255),
+  `data` LONGTEXT NOT NULL,
   `date` DATETIME,
   primary key (id),
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
