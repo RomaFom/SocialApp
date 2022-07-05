@@ -20,6 +20,8 @@ import { NgbdModalContent } from './components/modal/modal.component';
 import { AuthGuardService } from './reducers/services/AuthGuard.service';
 import { userReducer } from './reducers/user.reducer';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RegisterComponent } from './register/register.component';
+import {NgbdAlertSelfclosing} from './register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +29,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FeedComponent,
     NgbdModalComponent,
     NgbdModalContent,
+    RegisterComponent,
+    NgbdAlertSelfclosing
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     }),
     NgbModule,
   ],
-  providers: [AuthService, AuthGuardService, FeedService],
+  providers: [AuthService, AuthGuardService, FeedService,NgbdAlertSelfclosing],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

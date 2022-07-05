@@ -22,7 +22,7 @@ export class FeedComponent implements OnInit {
     private data: DataService,
     private router: Router,
     private http: HttpClient,
-    private feed: FeedService
+    private feed: FeedService,
   ) {}
 
   ngOnInit() {
@@ -54,5 +54,13 @@ export class FeedComponent implements OnInit {
         this.router.navigate([currentUrl]);
       }
     });
+  }
+  navigate(url:string){
+    this.router.navigate([url])
+    console.log("Navigate")
+  }
+  logout(){
+    localStorage.removeItem("token")
+    this.router.navigate(["/"])
   }
 }

@@ -26,4 +26,11 @@ export class AuthService {
       }),
     });
   }
+  registerUser(data:any): Observable<any> {
+    return this.http.post(this.baseURL + 'api/users/',
+    {name:data.name,
+    email:data.email,
+    password:data.password}
+    )
+  }
 }

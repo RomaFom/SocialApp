@@ -25,6 +25,9 @@ export class AppComponent implements OnInit {
           this.router.navigate(['/feed']);
         }
       });
+    }else{
+      this.router.navigate(['/login']);
     }
+
   }
 }

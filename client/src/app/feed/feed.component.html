@@ -1,9 +1,13 @@
 <div id="app" class="h-screen flex">
   <!-- Fixed sidebar -->
   <div class="bg-gray-600 w-40 sm:w-64">
-    <h1 class="p-4 text-white font-semibold text-xl">
+    <h1 class="p-4 text-gray-400 font-semibold text-xl">
       Welcome {{ user.name }}
     </h1>
+    <h2 class="p-4 text-white font-semibold text-xl">Home</h2>
+    <h2 class="p-4 text-white font-semibold text-xl">Profile</h2>
+    <h2 class="p-4 text-red-300 font-semibold text-xl"  (click)="logout()"><button>Logout</button></h2>
+
   </div>
   <!-- Scroll wrapper -->
   <div class="flex-1 flex bg-gray-100 overflow-hidden">
