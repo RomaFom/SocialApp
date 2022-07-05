@@ -1,16 +1,18 @@
-<div id="app" class="h-screen flex">
+<div id="app" class="h-screen flex sect1">
   <!-- Fixed sidebar -->
   <div class="bg-gray-600 w-40 sm:w-64">
     <h1 class="p-4 text-gray-400 font-semibold text-xl">
       Welcome {{ user.name }}
     </h1>
-    <h2 class="p-4 text-white font-semibold text-xl">Home</h2>
-    <h2 class="p-4 text-white font-semibold text-xl">Profile</h2>
-    <h2 class="p-4 text-red-300 font-semibold text-xl"  (click)="logout()"><button>Logout</button></h2>
-
+    <h2 class="p-4 text-white font-semibold text-xl" (click)="home()">
+      <button>Home</button>
+    </h2>
+    <h2 class="p-4 text-red-300 font-semibold text-xl" (click)="logout()">
+      <button>Logout</button>
+    </h2>
   </div>
   <!-- Scroll wrapper -->
-  <div class="flex-1 flex bg-gray-100 overflow-hidden">
+  <div class="flex-1 flex  overflow-hidden">
     <!-- Scrollable container -->
     <div class="px-6 py-4 flex-1 overflow-y-scroll">
       <div class="flex justify-end">
@@ -20,15 +22,18 @@
       <div *ngIf="postList">
         <div *ngFor="let post of postList">
           <div
-            class="p-8 shadow text-center rounded-lg my-10 bg-white"
-            v-for="i in 50"
+            class="p-8 shadow text-center rounded-lg my-10 bg-white w-75 mx-auto"
           >
             <div class="flex justify-end" *ngIf="user.id == post.user_id">
               <button (click)="deletePost(post)">
                 <i class="flex bi bi-x-circle fs-4 mb-4"></i>
               </button>
             </div>
+            <div class="flex justify-start" *ngIf="user.id == post.user_id">
+              <i class="bi-person-circle bi-lg"></i><p>{{ user.name }}</p>
+            </div>
             <div>
+
               {{ post.data }}
             </div>
           </div>

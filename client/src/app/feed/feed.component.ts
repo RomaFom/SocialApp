@@ -43,7 +43,7 @@ export class FeedComponent implements OnInit {
     console.log('User', this.user);
   }
   deletePost(data: any) {
-    console.log('Post data', data.id);
+    console.log('Post data', data);
     console.log('Token', this.token);
     this.feed.deletePost(this.token, data.id).subscribe((res) => {
       console.log(res);
@@ -62,5 +62,8 @@ export class FeedComponent implements OnInit {
   logout(){
     localStorage.removeItem("token")
     this.router.navigate(["/"])
+  }
+  home(){
+    this.router.navigate(["/feed"])
   }
 }
